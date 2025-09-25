@@ -65,15 +65,14 @@ class MatchThreeGame:
         self.remove_matches()
         
         # Заполняем поле и обрабатываем каскады
-        self.fill_board_buggy()  # ОШИБКА 2: Используем ошибочное заполнение
+        self.fill_board_buggy() 
         while self.find_matches_bfs():
             self.remove_matches()
-            self.fill_board_buggy()  # ОШИБКА 2: Используем ошибочное заполнение
+            self.fill_board_buggy()
         
         return True
     
     def find_matches_bfs(self) -> List[List[Tuple[int, int]]]:
-        """ОШИБКА 1: BFS без ограничений - улавливает L и T образные фигуры"""
         matches = []
         visited = set()
         
@@ -89,7 +88,6 @@ class MatchThreeGame:
         return matches
     
     def _bfs_all_directions(self, start_x: int, start_y: int, visited: Set[Tuple[int, int]]) -> List[Tuple[int, int]]:
-        """ОШИБКА 1: BFS который ищет во всех направлениях (L и T образные фигуры)"""
         color = self.board[start_y][start_x]
         # ОШИБКА: Добавляем диагональные направления для поиска сложных фигур
         directions = [(1, 0), (-1, 0), (0, 1), (0, -1), 
@@ -161,7 +159,6 @@ class MatchThreeGame:
             time.sleep(0.5)
     
     def fill_board_buggy(self) -> None:
-        """ОШИБКА 2: Фигуры не падают - заполнение без гравитации"""
         changes_made = False
         
         for x in range(self.width):
@@ -203,9 +200,6 @@ def main():
     print("Добро пожаловать в игру '3 в ряд'!")
     print("Для хода введите координаты двух соседних ячеек (x1 y1 x2 y2)")
     print("Для выхода введите 'q'")
-    print("ВНИМАНИЕ: Эта версия содержит две ошибки!")
-    print("1. BFS ищет L и T образные фигуры (вместо только прямых линий)")
-    print("2. Фигуры не падают после удаления")
     
     while True:
         game.print_board()
@@ -230,4 +224,5 @@ def main():
         print()
 
 if __name__ == "__main__":
+
     main()
